@@ -8,4 +8,4 @@ Você deve configurar algumas constantes para a "taxa de impostos", "preço do t
 
 Você deve definir funções para calcular o imposto e para formatar o preço com um “AOA” e arredondar para duas casas decimais.
 
-*Desafio de bônus: Tente incorporar entrada neste programa, talvez com o aviso (dica: prompt).Você pode solicitar ao usuário o saldo de sua conta bancária, por exemplo. Divirta-se e seja criativo!
+**Desafio de bônus:** Tente incorporar entrada neste programa, talvez com o aviso (dica: prompt).Você pode solicitar ao usuário o saldo de sua conta bancária, por exemplo. Divirta-se e seja criativo!
