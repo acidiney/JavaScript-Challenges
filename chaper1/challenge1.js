@@ -1,31 +1,42 @@
-/**
- * Escreva um programa para calcular o preço total da compra do seu telefone.
- * Você continuará comprando telefones (dica: loop!),
- * Até ficar sem dinheiro em sua conta bancária.
- * Você também comprará acessórios para cada telefone,
- * desde que o valor da sua compra esteja abaixo do limite de gastos mentais.
- * @author Acidiney Dias <acidineydias@gmail.com>
- */
+const SPENDING_THRESHOLD = 200;
+const TAX_RATE = 0.08;
+const PHONE_PRICE = 99.99;
+const ACCESSORY_PRICE = 9.99;
 
-console.log('-- CHALLENGE 1 --')
-const price = 100;
-const accessories = 50;
-let accountBalance = 2000;
-let total_amount;
+var bank_balance = 303.91;
+var amount = 0;
 
-let numPhones = 0;
-let numAcc = 0;
-function purchase() {
-    accountBalance -= total_amount;
+function calculateTax(amount) {
+    return amount * TAX_RATE;
 }
 
-for (total_amount = 0;
-    (accountBalance - total_amount) > 50; total_amount += (price + accessories)) {
-    if (total_amount === 0) continue;
-    console.log('#Comprando :-)');
-    numAcc ++;
-    numPhones ++;
+function formatAmount(amount) {
+    return "$" + amount.toFixed( 2 );
 }
 
-purchase();
-console.log(` * Comprou-se ${numPhones} Telefones \n * Comprou-se ${numAcc} Accessorios \n * Balanço final ${accountBalance}`);
+// keep buying phones while you still have money
+while (amount < bank_balance) {
+    // buy a new phone!
+    amount = amount + PHONE_PRICE;
+
+    // can we afford the accessory?
+    if (amount < SPENDING_THRESHOLD) {
+        amount = amount + ACCESSORY_PRICE;
+    }
+}
+
+// don't forget to pay the government, too
+amount = amount + calculateTax( amount );
+
+console.log(
+    "Your purchase: " + formatAmount( amount )
+);
+// Your purchase: $334.76
+
+// can you actually afford this purchase?
+if (amount > bank_balance) {
+    console.log(
+        "You can't afford this purchase. :("
+    );
+}
+// You can't afford this purchase. :(
