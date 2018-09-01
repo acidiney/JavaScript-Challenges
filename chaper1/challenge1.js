@@ -1,4 +1,4 @@
-const limite_gasto = 400;
+const limite_gasto = 400; 
 const preco_telefone = 100;
 const preco_acessorio = 4;
 const taxa = 0.02;
@@ -16,7 +16,7 @@ function calculaTaxa(total) {
 }
 
 function formataMoeda(moeda) {
-  return "AOA " + moeda;
+  return "AOA " + moeda.tofixed(2);
 }
 
 
