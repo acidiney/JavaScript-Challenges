@@ -1,42 +1,38 @@
-const SPENDING_THRESHOLD = 200;
-const TAX_RATE = 0.08;
-const PHONE_PRICE = 99.99;
-const ACCESSORY_PRICE = 9.99;
+const limite_gasto = 400;
+const preco_telefone = 100;
+const preco_acessorio = 4;
+const taxa = 0.02;
 
-var bank_balance = 303.91;
-var amount = 0;
+let saldo_banco = recebeSaldo();
+let total = 0;
 
-function calculateTax(amount) {
-    return amount * TAX_RATE;
+
+function recebeSaldo() {
+  return prompt("Introduza o seu saldo bancario");
 }
 
-function formatAmount(amount) {
-    return "$" + amount.toFixed( 2 );
+function calculaTaxa(total) {
+  return total * taxa;
 }
 
-// keep buying phones while you still have money
-while (amount < bank_balance) {
-    // buy a new phone!
-    amount = amount + PHONE_PRICE;
-
-    // can we afford the accessory?
-    if (amount < SPENDING_THRESHOLD) {
-        amount = amount + ACCESSORY_PRICE;
-    }
+function formataMoeda(moeda) {
+  return "AOA " + moeda;
 }
 
-// don't forget to pay the government, too
-amount = amount + calculateTax( amount );
 
-console.log(
-    "Your purchase: " + formatAmount( amount )
-);
-// Your purchase: $334.76
+while (total < saldo_banco) {
+  total += preco_telefone;
 
-// can you actually afford this purchase?
-if (amount > bank_balance) {
-    console.log(
-        "You can't afford this purchase. :("
-    );
+  if(total < limite_gasto) {
+    total += preco_acessorio;
+  }
 }
-// You can't afford this purchase. :(
+
+total = total + calculaTaxa(total);
+
+if(total > saldo_banco) {
+  console.log('Impossivel realizar compra', 'seu saldo atual é de ', formataMoeda(saldo_banco), 'Valor da compra é de ', formataMoeda(total));
+} else {
+
+  console.log ('Compra realizada, saldo actual é de', formataMoeda(saldo_banco))
+}
